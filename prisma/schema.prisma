@@ -35,12 +35,13 @@ model Roles {
 }
 
 model User {
-  id      Int    @id @default(autoincrement())
-  email   String @db.VarChar(255)
-  password   String @db.VarChar(255)
-  rolesId Int    @map("roles_id")
+  id       Int    @id @default(autoincrement())
+  username String @unique @db.VarChar(255)
+  email    String @db.VarChar(255)
+  password String @db.VarChar(255)
+  rolesId  Int    @map("roles_id")
 
   role Roles @relation(fields: [rolesId], references: [id])
 
-  @@map("tb_usuarios")
+  @@map("tb_users")
 }
