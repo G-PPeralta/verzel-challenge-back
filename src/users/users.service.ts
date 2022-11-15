@@ -10,7 +10,7 @@ export class UsersService {
   }
 
   async findAll() {
-    return prismaClient.user.findMany();
+    return await prismaClient.user.findMany();
   }
 
   async findOne(id: number) {

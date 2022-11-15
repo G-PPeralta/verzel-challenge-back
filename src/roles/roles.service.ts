@@ -9,8 +9,8 @@ export class RolesService {
     return await prismaClient.roles.create({ data: createRoleDto });
   }
 
-  findAll() {
-    return `This action returns all roles`;
+  async findAll() {
+    return await prismaClient.roles.findMany();
   }
 
   findOne(id: number) {
