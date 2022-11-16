@@ -13,15 +13,22 @@ export class ModulesService {
     return await prismaClient.modules.findMany();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} module`;
+  async findOne(id: number) {
+    return await prismaClient.modules.findUnique({ where: { id } });
   }
 
-  update(id: number, updateModuleDto: UpdateModuleDto) {
-    return `This action updates a #${id} module`;
+  async update(id: number, updateModuleDto: UpdateModuleDto) {
+    return await prismaClient.modules.update({
+      where: {
+        id: id,
+      },
+      data: {
+        moduleName: updateModuleDto.moduleName,
+      },
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} module`;
+  async remove(id: number) {
+    return await prismaClient.modules.delete({ where: { id } });
   }
 }
