@@ -13,15 +13,23 @@ export class ClassesService {
     return await prismaClient.classes.findMany();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} class`;
+  async findOne(id: number) {
+    return await prismaClient.classes.findUnique({ where: { id } });
   }
 
-  update(id: number, updateClassDto: UpdateClassDto) {
-    return `This action updates a #${id} class`;
+  async update(id: number, updateClassDto: UpdateClassDto) {
+    return await prismaClient.classes.update({
+      where: {
+        id: id,
+      },
+      data: {
+        className: updateClassDto.className,
+        date: updateClassDto.date,
+      },
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} class`;
+  async remove(id: number) {
+    return await prismaClient.classes.delete({ where: { id } });
   }
 }
